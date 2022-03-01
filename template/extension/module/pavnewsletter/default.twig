@@ -1,0 +1,78 @@
+
+<section class="homeCarpal-connectedSec">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="homeCarpal-connected">
+                    <h2>Stay <br> Connected. </h2>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="homeCarpal-eBook">
+                    {% if description and description != '<p><br></p>' %}
+                        <p>{{ description }}</p>
+                </div>
+                    {% endif %}
+                    <div class="pav-newsletter {{ prefix }} {{layout}} pav-newsletter" id="newsletter_{{ id }}" data-mode="{{ mode }}">
+                        <form  method="post" action="{{ action }}" class="formNewLestter newsletter-bg" {% if banner is not empty%} style="background-image: url('{{ banner }}')" {% endif %}>
+                            <div class="inner {% if layout == "layout1" %}row{% endif %}">
+                                {% if layout == "layout1" %}
+                                    <div class="col-md-6 col-sm-6">
+
+                                        <div class="description-top">
+                                            {% if description and description != '<p><br></p>' %}
+                                                <p>{{ description }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control input-md inputNew" {% if customer_email is not defined %} onblur="javascript:if(this.value=='')this.value='{{ default_input_text }}';" onfocus="javascript:if(this.value=='{{ default_input_text }}')this.value='';"{% endif %} value="{{ customer_email? customer_email : default_input_text }}" size="18" name="email">
+                                        </div>
+                                            <button type="submit" name="submitNewsletter" class="btn btn-danger">GET IT NOW ok</button>
+
+                                        <input type="hidden" value="1" name="action">
+                                        <div class="valid"></div>
+                                        <div class="description-bottom">
+                                            {{ social }}
+                                        </div>
+                                    </div>
+                                {% else %}
+
+
+                                    <div class="homeCarpal-eBook">
+                                        <input type="text" class=" input-md inputNew" {% if customer_email is not defined %} onblur="javascript:if(this.value=='')this.value='{{ default_input_text }}';" onfocus="javascript:if(this.value=='{{ default_input_text }}')this.value='';"{% endif %} value="{{ customer_email? customer_email : default_input_text }}"  name="email">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                            <label class="custom-control-label" for="customCheck2"> Subscribe to our newsletter for special offers and updates!</label>
+                                        </div>
+                                            <button type="submit" name="submitNewsletter" class="btn btn-danger">GET IT NOW </button>
+
+
+
+                                    </div>
+                                    <input type="hidden" value="1" name="action">
+                                    <div class="valid"></div>
+                                    <div class="description-bottom">
+                                        {{ social }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </form>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script><!--
+    $("#newsletter_{{ id }}").pavoNewsletter({
+        message: '{{ valid_email }}'
+    });//.work(  '{{ valid_email }}' );
+    --></script>
